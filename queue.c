@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include "graph.h"
+#include "node.h"
+#include <stdlib.h>
+#include "queue.h"
+
+
+queuenode* newQueueNode(pnode data, int value){
+	queuenode* p = (queuenode*)malloc(sizeof(queuenode));
+    if(p == NULL)
+        exit(0);
+    p->nodedata = data;
+    p->priority = value;
+    p->next = NULL;
+	return p;
+}
+
+pedge newEdge(int weight, pedge next, pnode dest){
+    pedge p = (pedge) malloc(sizeof(edge));
+    p->endpoint = dest;
+    p->next = next;
+    p->weight = weight;
+    return p;
+}
+
+pnode remove(queuenode** head){
+	pnode temp = (*head)->nodedata;
+	queuenode* temptofree = *head;
+	(*head) = (*head)->next;
+	free(temptofree);
+	return temp;
+}
+
+void insert(queuenode** head, pnode d, int p){
+	queuenode* start = (*head);
+	queuenode* temp = newQueueNode(d, p);
+	if (isEmpty(head)){
+		(*head) = temp;
+		return;
+	}
+
+	if ((*head)->priority > p) {
+		temp->next = *head;
+		(*head) = temp;
+	}
+	else {
+
+		while (start->next != NULL &&
+			start->next->priority < p) {
+			start = start->next;
+		}
+
+		temp->next = start->next;
+		start->next = temp;
+	}
+}
+
+// Function to check is list is empty
+int isEmpty(queuenode** head){
+	return (*head) == NULL;
+}

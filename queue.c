@@ -5,7 +5,7 @@
 #include "queue.h"
 
 
-queuenode* newQueueNode(pnode data, int value){
+queuenode* newqueueNode(pnode data, int value){
 	queuenode* p = (queuenode*)malloc(sizeof(queuenode));
     if(p == NULL)
         exit(0);
@@ -15,7 +15,7 @@ queuenode* newQueueNode(pnode data, int value){
 	return p;
 }
 
-pedge newEdge(int weight, pedge next, pnode dest){
+pedge new_edge(int weight, pedge next, pnode dest){
     pedge p = (pedge) malloc(sizeof(edge));
     p->endpoint = dest;
     p->next = next;
@@ -23,7 +23,7 @@ pedge newEdge(int weight, pedge next, pnode dest){
     return p;
 }
 
-pnode remove(queuenode** head){
+pnode Remove(queuenode** head){
 	pnode temp = (*head)->nodedata;
 	queuenode* temptofree = *head;
 	(*head) = (*head)->next;
@@ -31,9 +31,9 @@ pnode remove(queuenode** head){
 	return temp;
 }
 
-void insert(queuenode** head, pnode d, int p){
+void Insert(queuenode** head, pnode d, int p){
 	queuenode* start = (*head);
-	queuenode* temp = newQueueNode(d, p);
+	queuenode* temp = newqueueNode(d, p);
 	if (isEmpty(head)){
 		(*head) = temp;
 		return;

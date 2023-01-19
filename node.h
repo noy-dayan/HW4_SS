@@ -1,5 +1,5 @@
 pnode getNode(int data, pnode head);
-pnode insert_node(int data, pnode *head);
+pnode insert_node(int input, pnode *head);
 void remove_out_edges(pnode here);
 pnode generate(int k);
 pnode newnode(int k, pnode next);

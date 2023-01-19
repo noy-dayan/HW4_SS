@@ -62,18 +62,17 @@ void remove_edge_to(int data, pnode here){
     }
 }
 
-pnode insert_node(int data, pnode *head){
-    pnode *p = head;
-    while ((*p)->next)
-    {
-        if((*p)->node_num< data && (*p)->next->node_num> data){
-            pnode new = newnode(data,(*p)->next);
-            (*p)->next = new;
-            return new;
+pnode insertNode(int input, pnode *head){
+    pnode *current = head;
+    while ((*current)->next){
+        if((*current)->node_num < input && (*current)->next->node_num > input){
+            pnode new_node = newnode(input,(*current)->next);
+            (*current)->next = new_node;
+            return new_node;
         }
-        p=&((*p)->next);
+        current = &((*current)->next);
     }
-    pnode new = newnode(data,(*p)->next);
-    (*p)->next = new;
-    return new;
+    pnode new_node = newnode(input,(*current)->next);
+    (*current)->next = new_node;
+    return new_node;
 }

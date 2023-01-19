@@ -6,14 +6,14 @@
 #include <limits.h>
 
 void build_graph_cmd(pnode *head){
-    int i;
-    scanf("%d", &i);
-    pnode here = getNode(i, *head);
+    int pn;
+    scanf("%d", &pn);
+    pnode here = getNode(pn, *head);
     pedge prev = NULL;
-    while(scanf("%d", &i)==1){
-        pnode dest = getNode(i, *head);
-        scanf("%d", &i);
-        prev = newEdge(i,prev,dest);
+    while(scanf("%d", &pn)==1){
+        pnode dest = getNode(pn, *head);
+        scanf("%d", &pn);
+        prev = new_edge(pn,prev,dest);
     }
     here->edges = prev;
 }
@@ -32,13 +32,13 @@ void insert_node_cmd(pnode *head){
         remove_out_edges(node);
     }
     else{
-        node = insert_node(i, head);
+        node = insertNode(i, head);
     }
     pedge prev = NULL;
     while(scanf("%d", &i)==1){
         pnode dest = getNode(i, *head);
         scanf("%d", &i);
-        prev = newEdge(i,prev,dest);
+        prev = new_edge(i,prev,dest);
     }
     node->edges = prev;
 }
@@ -103,14 +103,14 @@ void deleteGraph_cmd(pnode* head){
     }
 }
 void dijkstra(int *arr,pnode here){
-    queuenode* q = newQueueNode(here, 0);
+    queuenode* q = newqueueNode(here, 0);
     while (!isEmpty(&q)){
-        here = remove(&q);
+        here = Remove(&q);
         pedge curr_edge = here->edges;
         while(curr_edge!=NULL){
             if (arr[here->seq] + curr_edge->weight < arr[curr_edge->endpoint->seq]){
                 arr[curr_edge->endpoint->seq] = arr[here->seq] + curr_edge->weight;
-                insert(&q, curr_edge->endpoint, arr[curr_edge->endpoint->seq]);
+                Insert(&q, curr_edge->endpoint, arr[curr_edge->endpoint->seq]);
             }
             curr_edge= curr_edge->next;
         }

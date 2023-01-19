@@ -2,8 +2,7 @@
 
 int isEmpty(queuenode** head);
 int peek(queuenode** head);
-pnode remove(queuenode** head);
-void insert(queuenode** head, pnode d, int p);
-
-queuenode* newQueueNode(pnode data, int value);
-pedge newEdge(int weight, pedge next, pnode dest);
+queuenode* newqueueNode(pnode data, int value);
+pnode Remove(queuenode** head);
+void Insert(queuenode** head, pnode d, int p);
+pedge new_edge(int weight, pedge next, pnode dest);
